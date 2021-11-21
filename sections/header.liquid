@@ -1,0 +1,15 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="index.html">Shopify-Training</a>
+      <div class="collapse navbar-collapse" >
+        <ul class="navbar-nav mr-auto">
+          <!-- 指定したハンドル"main-menu"のリンクの取り出し -->
+          {% for link in linklists.main-menu.links %}
+          <li class="nav-item">
+            <a class="nav-link" href="{{ link.url }}">{{ link.title }}</a>
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+    </nav>
+  </header>
