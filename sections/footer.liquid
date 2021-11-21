@@ -14,4 +14,28 @@
         </ul>
       </div>
     </div>
-  </footer>
+</footer>
+
+<!-- 管理画面にSNSの設定を追加 -->
+{% schema %}
+{
+"name": "Footer",
+"settings":[
+{
+"type": "text",
+"id": "instagram",
+"label": "Instagram Link"
+},
+{
+"type": "text",
+"id": "facebook",
+"label": "Facebook Link"
+},
+{
+"type": "text",
+"id": "twitter",
+"label": "Twitter Link"
+}
+]
+}
+{% endschema %}
