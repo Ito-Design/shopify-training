@@ -1,0 +1,17 @@
+<footer class="mt-5 py-2 bg-secondary text-white">
+    <div class="container">
+      <div class="footer_menu d-flex align-items-center justify-content-between">
+        <ul class="footer_menu_left no_margin_buttom">
+            <!-- footer.linksでフッターのメニューを取り出し -->
+            {% for link in linklists.footer.links %}
+            <li><a href="{{ link.url }}" class="text-white">{{ link.title }}</a></li>
+            {% endfor %}
+        </ul>
+        <ul class="footer_menu_rigth no_margin_buttom">
+          <li><a href="#" class="text-white"><i class="fab fa-instagram"></i></a></li>
+          <li><a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a></li>
+          <li><a href="#" class="text-white"><i class="fab fa-twitter"></i></a></li>
+        </ul>
+      </div>
+    </div>
+  </footer>
