@@ -59,6 +59,7 @@
         </ul>
 
         <div class="pc_menu d-flex">
+          <!-- カート機能 -->
           <a href="/cart">
             <span class="navbar-text">
               <i class="fas fa-shopping-cart fa-lg"></i>
@@ -67,6 +68,16 @@
               カート({{cart.item_count}})
             </span>
           </a>
+
+          <!-- 検索機能 -->
+          <form class="search" action="/search">
+            <div class="input-group ml-2">
+              <input type="text" class="form-control" placeholder="検索" name="q" value="{{ search.terms | escape }}">
+              <span class="input-group-btn">
+                <button type="submit  " class="btn btn-primary"><i class="fas fa-search"></i></button>
+              </span>
+            </div>
+          </form>
         </div>
 
       </div><!-- collapse -->
