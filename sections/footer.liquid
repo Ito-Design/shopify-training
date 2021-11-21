@@ -7,10 +7,30 @@
             <li><a href="{{ link.url }}" class="text-white">{{ link.title }}</a></li>
             {% endfor %}
         </ul>
+
+        <!-- SNSのリンクを取り出し -->
         <ul class="footer_menu_rigth no_margin_buttom">
-          <li><a href="#" class="text-white"><i class="fab fa-instagram"></i></a></li>
-          <li><a href="#" class="text-white"><i class="fab fa-facebook-f"></i></a></li>
-          <li><a href="#" class="text-white"><i class="fab fa-twitter"></i></a></li>
+            {% if section.settings.instagram != blank %}
+            <li>
+              <a href="{{section.settings.instagram}}" class="text-white">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </li>
+            {% endif %}
+            {% if section.settings.facebook != blank %}
+            <li>
+              <a href="{{section.settings.facebook}}" class="text-white">
+                <i class="fab fa-facebook-f"></i>
+              </a>
+            </li>
+            {% endif %}
+            {% if section.settings.twitter != blank %}
+            <li>
+              <a href="{{section.settings.twitter}}" class="text-white">
+                <i class="fab fa-twitter"></i>
+              </a>
+            </li>
+            {% endif %}
         </ul>
       </div>
     </div>
