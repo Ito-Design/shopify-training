@@ -57,6 +57,18 @@
           {% endfor %}
   
         </ul>
-      </div>
+
+        <div class="pc_menu d-flex">
+          <a href="/cart">
+            <span class="navbar-text">
+              <i class="fas fa-shopping-cart fa-lg"></i>
+            </span>
+            <span class="navbar-text">
+              カート({{cart.item_count}})
+            </span>
+          </a>
+        </div>
+
+      </div><!-- collapse -->
     </nav>
   </header>
