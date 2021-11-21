@@ -11,6 +11,7 @@
             <!-- link.titleをhandleizeし、変数に定義 -->
             {% assign child_list_handle = link.title | handleize %}
             {% if linklists[child_list_handle].links != blank %}
+            <!-- ドロップダウンメニューを出す -->
             <div class="dropdown drop-hover">
               <!-- href="{{ link.url }}"でリンクのURLを指定、{{ link.title }}でタイトルを表示 -->
               <a class="nav-link dropdown-toggle" href="{{ link.url }}">{{ link.title }}</a>
@@ -18,10 +19,31 @@
               <ul class="dropdown-menu mt-0">
                 <!-- "child_list_handle"のリンクの取り出し -->
                 {% for childlink in linklists[child_list_handle].links %}
-                <li>
+
+                <!-- サブメニューの中にメニューがある場合 -->
+                {% assign sub_list_handle = childlink.title | handleize %}
+                {% if linklists[sub_list_handle].links != blank %}
+                <!-- ドロップダウンメニューを出す -->
+                <li class="dropright drop-hover">
+                  <a class="dropdown-item dropdown-toggle" href="{{ childlink.url }}">{{ childlink.title }}</a>
+                  
+                  <ul class="dropdown-menu ml-0">
+                    <!-- sub_list_handleのタイトルを1つずつ表示 -->
+                    {% for sublink in linklists[sub_list_handle].links %}
+                    <li>
+                      <a class="dropdown-item" href="{{ sublink.url }}">{{ sublink.title }}</a>
+                    </li>
+                    {% endfor %}
+                  </ul>
+                </li>
+
+                <!-- サブメニューの中にメニューがない場合 -->
+                {%else%}
                   <!-- "child_list_handle"のリンクのURLを指定、タイトルをescapeし表示 -->
+                <li>
                   <a class="dropdown-item" href="{{ childlink.url }}">{{ childlink.title | escape }}</a>
                 </li>
+                {%endif%}
                 {% endfor %}
               </ul>
             </div>
