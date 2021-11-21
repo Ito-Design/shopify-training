@@ -15,7 +15,7 @@
               <!-- href="{{ link.url }}"でリンクのURLを指定、{{ link.title }}でタイトルを表示 -->
               <a class="nav-link dropdown-toggle" href="{{ link.url }}">{{ link.title }}</a>
               
-              <ul class="dropdown-menu">
+              <ul class="dropdown-menu mt-0">
                 <!-- "child_list_handle"のリンクの取り出し -->
                 {% for childlink in linklists[child_list_handle].links %}
                 <li>
