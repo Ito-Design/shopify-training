@@ -1,0 +1,16 @@
+<!-- 画像の出力 -->
+<div class="toppage_bg_img mb-5" style="background-image: url('{{section.settings.toppage_header_image | img_url: '1920x'}}');"></div>
+
+<!-- 管理画面にトップヘッダー画像の設定 -->
+{% schema %}
+{
+	"name": "Toppage Header Image",
+	"settings": [
+		{
+			"type": "image_picker",
+			"id": "toppage_header_image",
+			"label": "Toppage Header Image"
+		}
+	]
+}
+{% endschema %}
