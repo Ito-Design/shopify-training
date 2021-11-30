@@ -6,6 +6,7 @@
 {% render 'breadcrumbs' %}
 
 <div class="main">
+  {% paginate collection.products by 3 %}
   <div class="container">
     <div class="row row-cols-sm-3">
       <!-- コレクションの商品情報の取得 -->
@@ -31,5 +32,12 @@
       <p>no matches</p>
       {% endfor %}
     </div>
+
+    {% if paginate.pages > 1 %}
+    <nav aria-label="Page navigation example" class="pagination_nav">
+      {{ paginate | default_pagination: next: '»', previous: '«' }}
+    </nav>
+    {% endif %}
+    {% endpaginate %}
   </div>
 </div>
