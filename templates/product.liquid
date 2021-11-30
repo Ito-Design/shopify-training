@@ -53,5 +53,29 @@
         </form>
       </div>
     </div>
+
+    <h3 class="f36 text-center mb-5">関連商品</h3>
+    <div class="row row-cols-sm-3">
+      <!-- 関連商品の取得 -->
+      {% for collection in product.collections %}
+        {% paginate collection.products by 3 %}
+          {% for product in collection.products %}
+            <a href="{{product.url | within: collection}}" class="col-sm mb-3">
+              <div class="card position-relative">
+                {% unless product.available %}<span class="f26 sold_out text-danger position-absolute">Sold
+                  Out</span>{% endunless %}
+                <img class="item_list_img" src="{{product.featured_image.src | img_url: '1920x'}}" alt="">
+                <div class="card-body">
+                  <p class="card-text font-weight-bold">{{product.title}}</p>
+                  <p>{{product.price | money}}</p>
+                </div>
+              </div>
+            </a>
+          {% endfor %}
+        {% endpaginate %}
+        {% break %}
+      {% endfor %}
+    </div>
+
   </div>
 </div>
