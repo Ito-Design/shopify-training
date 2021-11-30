@@ -17,6 +17,41 @@
           {% endfor %}
         </div>
       </div>
+      <div class="col-sm">
+        <!-- 商品情報の取得 -->
+        <h2 class="mb-3 f30">{{ product.title }}</h2>
+        <p class="f26">{{ current_variant.price | money }}</p>
+        <p class="my-5">{{ product.description }}</p>
+
+        <form action="/cart/add" method="post" enctype="multipart/form-data" id="AddToCartForm">
+          <div class="form-row">
+            <div class="form-group col-md-4">
+              <label for="id">種類</label>
+              <select name="id" id="productSelect" class="form-control">
+                <!-- バリエーションの取り出し -->
+                {% for variant in product.variants %}
+                <!-- バリエーションがある場合、id、title、priceを取得 -->
+                {% if variant.available %}
+                <option value="{{ variant.id }}">
+                  {{ variant.title }} - {{ variant.price | money_with_currency }}
+                </option>
+                <!-- バリエーションがない場合、sold out を表示 -->
+                {% else %}
+                <option disabled="disabled">
+                  {{ variant.title }} - sold out
+                </option>
+                {% endif %}
+                {% endfor %}
+              </select>
+            </div>
+            <div class="form-group col-md-4">
+              <label for="number">数量</label>
+              <input type="number" id="Quantity" name="quantity" class="form-control" value="1" min="1">
+            </div>
+          </div>
+          <button type="submit" name="add" id="AddToCart" class="mx-auto btn btn-dark">カートに入れる</button>
+        </form>
+      </div>
     </div>
   </div>
 </div>
