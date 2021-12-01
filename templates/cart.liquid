@@ -1,2 +1,71 @@
 {% section 'cart-header' %}
 {% render 'breadcrumbs' %}
+
+<!-- カートの中身がある場合 -->
+{% if cart.item_count > 0 %}
+<div class="main">
+  <div class="container">
+    <form action="/cart" method="post" novalidate>
+      <table class="table cart_table">
+        <thead>
+          <tr>
+            <th scope="col">商品</th>
+            <th scope="col"></th>
+            <th scope="col">価格</th>
+            <th scope="col">数量</th>
+            <th scope="col">合計</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- カートの商品を取得 -->
+          {% for item in cart.items %}
+          <tr>
+            <!-- 商品のURLを取得 -->
+            <th scope="col"><a href="{{ item.url | within: collections.all }}">
+                <!-- 画像URLの取得 -->
+                <img src="{{ item | img_url: 'medium' }}" alt="{{ item.title | escape }}"
+                  class="cover_img cart_product_img">
+              </a></th>
+            <!-- バリエーション取得 -->
+            <td><a href="{{ item.url | within: collections.all }}">{{ item.variant.title }}</a></td>
+            <!-- 料金を取得 -->
+            <td>{{ item.price | money }}</td>
+            <td>
+              <!-- 商品数の変更 -->
+              <input type="number" class="form-control" name="updates[]" id="updates_{{ item.key }}"
+                value="{{ item.quantity }}" min="0"></td>
+                <!-- 割引前の料金を表示 -->
+            <td>{% if item.original_line_price != item.line_price %}{{ item.original_line_price | money }}{% endif %}
+              <!-- 割引がある場合、割引の料金を表示 -->
+              {{ item.line_price | money }}
+              <!-- 割引を順番に表示 -->
+              {% for discount in item.discounts %}{{ discount.title }}{% endfor %}</td>
+            <td><a href="/cart/change?line={{ forloop.index }}&quantity=0" class="delete_button">削除</a></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <div class="text-right">
+        <!-- 合計金額の表示 -->
+        <p class="f26">小計：{{ cart.total_price | money }}</p>
+        <p class="f14">税と配送料は購入手続き時に計算されます</p>
+      </div>
+      <div class="d-flex">
+        <button type="submit" class="ml-auto mr-3 btn btn-light" name="update">更新
+        </button>
+        <button type="submit" class="btn btn-dark" name="checkout">レジに進む
+        </button>
+      </div>
+      <div class="text-right mt-3">
+        <a href="/" class="f14 border-bottom">ショッピングを続ける</a>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- カートの中身がない場合 -->
+{% else %}
+<h2>cart</h2>
+Cart is empty
+{% endif %}
