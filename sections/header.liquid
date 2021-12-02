@@ -72,6 +72,17 @@
 
           </li>
           {% endfor %}
+
+          <!-- アカウント追加の判定 -->
+          {% if shop.customer_accounts_enabled %}
+            <!-- ログイン状態の判定 -->
+            {% if customer %}
+              <li class="nav-item"><a class="nav-link" href="/account/logout">Log Out</a></li>
+            {% else %}
+              <li class="nav-item"><a class="nav-link" href="/account/login">Log In</a></li>
+              <li class="nav-item"><a class="nav-link" href="/account/register">Register</a></li>
+            {% endif %}
+          {% endif %}
   
         </ul>
 
